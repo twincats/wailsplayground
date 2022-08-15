@@ -38,6 +38,7 @@ const toggleMaximize = () => {
   user-select: none;
   justify-content: center;
   align-items: center;
+  height: 30px;
 
   .left {
     margin-left: 0.5rem;
@@ -48,7 +49,7 @@ const toggleMaximize = () => {
   .right {
     display: flex;
     div {
-      padding: 0.35rem 0.75rem;
+      padding: 0.3rem 0.75rem;
       &:hover {
         background-color: lighten(@title, 10%);
       }
