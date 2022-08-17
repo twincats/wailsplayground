@@ -13,6 +13,7 @@
   "devDependencies": {
     "@arco-design/web-vue": "^2.35.0",
     "@iconify-json/mdi": "^1.1.10",
+    "@types/node": "^18.7.6",
     "@vitejs/plugin-vue": "^3.0.3",
     "@vueuse/core": "^9.1.0",
     "less": "^4.1.3",

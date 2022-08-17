@@ -9,4 +9,4 @@ const app = createApp(App)
 app.use(Router)
 app.mount('#app')
 
-document.body.setAttribute('arco-theme', 'dark')
+// document.body.setAttribute('arco-theme', 'dark')

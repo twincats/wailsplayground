@@ -11,6 +11,8 @@ declare module '@vue/runtime-core' {
     AList: typeof import('@arco-design/web-vue')['List']
     AListItem: typeof import('@arco-design/web-vue')['ListItem']
     ASlider: typeof import('@arco-design/web-vue')['Slider']
+    ASpace: typeof import('@arco-design/web-vue')['Space']
+    ATypographyTitle: typeof import('@arco-design/web-vue')['TypographyTitle']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     'IMdi:close': typeof import('~icons/mdi/close')['default']
     'IMdi:windowMaximize': typeof import('~icons/mdi/window-maximize')['default']

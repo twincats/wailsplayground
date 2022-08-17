@@ -1,3 +1,5 @@
+import { fileURLToPath, URL } from 'node:url'
+
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
@@ -9,6 +11,12 @@ import { ArcoResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+      '@wails': fileURLToPath(new URL('./wailsjs', import.meta.url)),
+    },
+  },
   plugins: [
     vue(),
     Unocss(),

@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts" setup>
-import { WindowToggleMaximise } from '../../../wailsjs/runtime'
+import { WindowToggleMaximise } from '@wails/runtime'
 const maxStatus = ref(true)
 
 const toggleMaximize = () => {

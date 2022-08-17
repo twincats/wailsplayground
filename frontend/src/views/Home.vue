@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Homepage</h1>
+    <a-typography-title :heading="2"> HomePage </a-typography-title>
     <div>
       <br /><br />
       <!-- <img id="logo" alt="Wails logo" src="./assets/images/logo-universal.png" /> -->
@@ -8,12 +8,17 @@
         >Reload</a-button
       >
       <br /><br />
-      <a-button type="primary" status="success" @click="trans"
-        >Toggle Transparant</a-button
-      >
+      <a-space>
+        <a-button type="primary" status="success" @click="toggleTransparant()"
+          >Toggle Transparant</a-button
+        >
+        <a-button type="primary" status="warning" @click="toggleTheme()"
+          >Toggle Theme</a-button
+        >
+      </a-space>
       <br /><br />
       <a-slider
-        v-model="bgColorMain[3]"
+        v-model="appBgAlpha"
         :step="0.01"
         :min="0"
         :max="1"
@@ -39,21 +44,10 @@
 </template>
 
 <script lang="ts" setup>
-import * as runtime from '../../wailsjs/runtime'
-import { GetManga } from '../../wailsjs/go/main/App'
-import type { main } from '../../wailsjs/go/models'
-
-const bgColorMain = ref([35, 35, 36, 0.95])
-const bgAlphaMain = ref(0.95)
-
-const trans = () => {
-  if (bgColorMain.value[3] == 1) {
-    bgColorMain.value[3] = bgAlphaMain.value
-  } else {
-    bgAlphaMain.value = bgColorMain.value[3]
-    bgColorMain.value[3] = 1
-  }
-}
+import * as runtime from '@wails/runtime'
+import { GetManga } from '@wails/go/main/App'
+import type { main } from '@wails/go/models'
+import { toggleTransparant, appBgAlpha, toggleTheme } from '@/composables/app'
 
 const output = ref<main.Manga[] | []>()
 const finds = () => {
