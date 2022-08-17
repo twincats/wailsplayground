@@ -17,3 +17,7 @@ to this in your browser, and you can call your Go code from devtools.
 ## Building
 
 To build a redistributable, production mode package, use `wails build`.
+
+## Playground Application
+
+This App is for testing and plaground for wails app development. Wails use Golang and webiew2 for windows with frontend vue 3 and arcodesign components library.
