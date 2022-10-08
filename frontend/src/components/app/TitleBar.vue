@@ -1,10 +1,10 @@
 <template>
-  <div id="titleBar" data-wails-drag>
+  <div id="titleBar" style="--wails-draggable: drag">
     <div class="left">
       <img class="w-5" src="../../assets/images/favicon.png" />
     </div>
     <div class="mid" @dblclick="toggleMaximize">AppName</div>
-    <div class="right" data-wails-no-drag>
+    <div class="right" style="--wails-draggable: no-drag">
       <div class="" onclick="window.runtime.WindowMinimise()">
         <i-mdi:window-minimize />
       </div>

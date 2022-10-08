@@ -26,6 +26,9 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
+	// tit, _ := syscall.UTF16PtrFromString("waislplayground")
+	// hwnd := win.FindWindow(nil, tit)
+	// win.SetWindowLong(hwnd, win.GWL_EXSTYLE, win.GetWindowLong(hwnd, win.GWL_EXSTYLE)|win.WS_EX_LAYERED)
 }
 
 // Greet returns a greeting for the given name
