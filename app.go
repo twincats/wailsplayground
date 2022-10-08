@@ -7,6 +7,7 @@ import (
 	"path/filepath"
 
 	"github.com/climech/naturalsort"
+	"github.com/wailsapp/wails/v2/pkg/runtime"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -26,6 +27,7 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
+	runtime.WindowSetTitle(ctx, "MangaV3.5")
 	// tit, _ := syscall.UTF16PtrFromString("waislplayground")
 	// hwnd := win.FindWindow(nil, tit)
 	// win.SetWindowLong(hwnd, win.GWL_EXSTYLE, win.GetWindowLong(hwnd, win.GWL_EXSTYLE)|win.WS_EX_LAYERED)

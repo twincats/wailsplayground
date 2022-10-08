@@ -1,6 +1,6 @@
 <template>
   <div>
-    <title-bar></title-bar>
+    <!-- <title-bar></title-bar>  -->
     <div id="main">
       <router-view></router-view>
     </div>
