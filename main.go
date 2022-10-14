@@ -2,6 +2,8 @@ package main
 
 import (
 	"embed"
+	"mangav3/apps"
+	"mangav3/apps/manga"
 
 	"github.com/wailsapp/wails/v2"
 
@@ -14,9 +16,14 @@ var assets embed.FS
 
 func main() {
 	// Create an instance of the app structure
-	app := NewApp()
+	app := apps.NewApp()
+
 	//connect sqlite db
-	app.connectDatabase("mangadb.db")
+	// app.connectDatabaseSqlite("mangadb.db")
+	apps.ConnectDatabasePostgres("mangav3")
+
+	//manga instanse
+	manga := manga.NewManga()
 
 	// Create application with options
 	err := wails.Run(&options.App{
@@ -31,9 +38,10 @@ func main() {
 			// DisableFramelessWindowDecorations: true,
 		},
 		BackgroundColour: &options.RGBA{R: 24, G: 24, B: 24, A: 1},
-		OnStartup:        app.startup,
+		OnStartup:        app.Startup,
 		Bind: []interface{}{
 			app,
+			manga,
 		},
 	})
 

@@ -1,4 +1,4 @@
-package main
+package apps
 
 import (
 	"context"
@@ -8,6 +8,7 @@ import (
 
 	"github.com/climech/naturalsort"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
+	"gorm.io/driver/postgres"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -25,7 +26,7 @@ func NewApp() *App {
 
 // startup is called when the app starts. The context is saved
 // so we can call the runtime methods
-func (a *App) startup(ctx context.Context) {
+func (a *App) Startup(ctx context.Context) {
 	a.ctx = ctx
 	runtime.WindowSetTitle(ctx, "MangaV3.5")
 	// tit, _ := syscall.UTF16PtrFromString("waislplayground")
@@ -56,10 +57,19 @@ func (app *App) Find(root string, ext []string) []string {
 }
 
 //internal
-func (a *App) connectDatabase(dbname string) {
+func (a *App) ConnectDatabaseSqlite(dbname string) {
 	db, err := gorm.Open(sqlite.Open(dbname), &gorm.Config{})
 	if err != nil {
-		panic("failed to connect database")
+		panic("failed to connect database " + dbname)
+	}
+	a.db = db
+}
+
+func (a *App) ConnectDatabasePostgres(dbname string) {
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=disable TimeZone=Asia/Jakarta", "127.0.0.1", "achul", "1234", dbname, 5432)
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	if err != nil {
+		panic("failed to connect database " + dbname)
 	}
 	a.db = db
 }

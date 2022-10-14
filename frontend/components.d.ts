@@ -7,15 +7,8 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    ABreadcrumb: typeof import('@arco-design/web-vue')['Breadcrumb']
-    ABreadcrumbItem: typeof import('@arco-design/web-vue')['BreadcrumbItem']
     AButton: typeof import('@arco-design/web-vue')['Button']
     AButtonGroup: typeof import('@arco-design/web-vue')['ButtonGroup']
-    ALayout: typeof import('@arco-design/web-vue')['Layout']
-    ALayoutContent: typeof import('@arco-design/web-vue')['LayoutContent']
-    ALayoutFooter: typeof import('@arco-design/web-vue')['LayoutFooter']
-    ALayoutHeader: typeof import('@arco-design/web-vue')['LayoutHeader']
-    ALayoutSider: typeof import('@arco-design/web-vue')['LayoutSider']
     AList: typeof import('@arco-design/web-vue')['List']
     AListItem: typeof import('@arco-design/web-vue')['ListItem']
     AMenu: typeof import('@arco-design/web-vue')['Menu']
@@ -25,7 +18,6 @@ declare module '@vue/runtime-core' {
     ASubMenu: typeof import('@arco-design/web-vue')['SubMenu']
     ATypographyTitle: typeof import('@arco-design/web-vue')['TypographyTitle']
     BreadNav: typeof import('./src/components/app/BreadNav.vue')['default']
-    Footer: typeof import('./src/components/app/Footer.vue')['default']
     FooterBar: typeof import('./src/components/app/FooterBar.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     MenuBar: typeof import('./src/components/app/MenuBar.vue')['default']

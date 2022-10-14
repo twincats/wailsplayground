@@ -45,14 +45,14 @@
 
 <script lang="ts" setup>
 import * as runtime from '@wails/runtime'
-import { GetManga } from '@wails/go/main/App'
-import type { main } from '@wails/go/models'
+import { GetManga } from '@wails/go/manga/Manga'
+import { models } from '@wails/go/models'
 import { toggleTransparant, appBgAlpha, toggleTheme } from '@/composables/app'
-
-const output = ref<main.Manga[] | []>()
+models.Mangas
+const output = ref<models.Mangas[] | []>()
 const finds = () => {
   GetManga().then(res => {
-    output.value = res as main.Manga[]
+    output.value = res as models.Mangas[]
     // alert('output is out')
   })
 }
