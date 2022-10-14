@@ -2,14 +2,11 @@ package main
 
 import (
 	"embed"
-	"fmt"
 
 	"github.com/wailsapp/wails/v2"
-	"github.com/wailsapp/wails/v2/pkg/menu"
-	"github.com/wailsapp/wails/v2/pkg/menu/keys"
+
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/options/windows"
-	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
 
 //go:embed frontend/dist
@@ -21,15 +18,6 @@ func main() {
 	//connect sqlite db
 	app.connectDatabase("mangadb.db")
 
-	//menu test
-	AppMenu := menu.NewMenu()
-	FileMenu := AppMenu.AddSubmenu("File")
-	FileMenu.AddText("&Open", keys.CmdOrCtrl("o"), func(_ *menu.CallbackData) { fmt.Println("click open menu") })
-	FileMenu.AddSeparator()
-	FileMenu.AddText("Quit", keys.CmdOrCtrl("q"), func(_ *menu.CallbackData) {
-		runtime.Quit(app.ctx)
-	})
-
 	// Create application with options
 	err := wails.Run(&options.App{
 		Title:     "waislplayground",
@@ -37,7 +25,6 @@ func main() {
 		Height:    768,
 		Assets:    assets,
 		Frameless: false,
-		Menu:      AppMenu,
 		Windows: &windows.Options{
 			WebviewIsTransparent: false,
 			WindowIsTranslucent:  false,
