@@ -29,7 +29,14 @@
         >Get Manga</a-button
       >
       <br /><br />
-      <router-link to="/about">go about</router-link>
+
+      <div class="flex justify-center">
+        <div class="divider-demo">
+          <router-link to="/about">go about</router-link
+          ><a-divider irection="vertical" />
+          <router-link to="/test">go test</router-link>
+        </div>
+      </div>
     </div>
     <div class="p-3 text-left">
       <a-list>
@@ -45,14 +52,14 @@
 
 <script lang="ts" setup>
 import * as runtime from '@wails/runtime'
-import { GetManga } from '@wails/go/manga/Manga'
+import { GetMangas } from '@wails/go/manga/Manga'
 import { models } from '@wails/go/models'
 import { toggleTransparant, appBgAlpha, toggleTheme } from '@/composables/app'
-models.Mangas
-const output = ref<models.Mangas[] | []>()
+
+const output = ref<models.Manga[] | []>()
 const finds = () => {
-  GetManga().then(res => {
-    output.value = res as models.Mangas[]
+  GetMangas().then(res => {
+    output.value = res as models.Manga[]
     // alert('output is out')
   })
 }
@@ -60,8 +67,10 @@ finds()
 </script>
 
 <style>
-/* #main {
-  min-height: 100%;
-  background-color: rgba(v-bind(bgColorMain));
-} */
+.divider-demo {
+  box-sizing: border-box;
+  width: 560px;
+  padding: 24px;
+  border: 30px solid rgb(var(--gray-2));
+}
 </style>

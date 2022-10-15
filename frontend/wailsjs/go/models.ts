@@ -1,13 +1,13 @@
 export namespace models {
 	
-	export class Mangas {
+	export class Manga {
 	    id: number;
 	    title: string;
 	    status_end: boolean;
 	    mdex?: number;
 	
 	    static createFrom(source: any = {}) {
-	        return new Mangas(source);
+	        return new Manga(source);
 	    }
 	
 	    constructor(source: any = {}) {

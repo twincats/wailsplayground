@@ -9,5 +9,10 @@ export default createRouter({
       name: 'about',
       component: () => import('../views/About.vue'),
     },
+    {
+      path: '/test',
+      name: 'test',
+      component: () => import('../views/Test.vue'),
+    },
   ],
 })
