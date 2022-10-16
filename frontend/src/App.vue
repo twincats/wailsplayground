@@ -1,8 +1,8 @@
 <template>
   <div>
     <!-- <title-bar></title-bar>  -->
-    <menu-bar />
-    <side-bar />
+    <menu-bar @clickMenu="test" />
+    <side-bar :collapse="collapse" />
     <div id="main">
       <router-view></router-view>
     </div>
@@ -13,6 +13,12 @@
 <script lang="ts" setup>
 import { themeVar, appBgAlpha } from './composables/app'
 import '@arco-design/web-vue/es/Message/style/css.js'
+
+const collapse = ref(true)
+function test() {
+  console.log('ini test collapse')
+  collapse.value = !collapse.value
+}
 </script>
 
 <style>

@@ -2,9 +2,9 @@
   <div class="menu-bar">
     <div class="w-full flex justify-start">
       <a-button-group size="mini">
-        <a-button> <icon-list /> </a-button>
-        <a-button> cut </a-button>
-        <a-button> find </a-button>
+        <a-button @click="emit('clickMenu')"> <icon-list /> </a-button>
+        <a-button @click="$router.push('/')"> M </a-button>
+        <a-button @click="$router.push('/convert')"> CV </a-button>
       </a-button-group>
     </div>
     <div class="w-full flex justify-end">
@@ -19,6 +19,8 @@
 
 <script lang="ts" setup>
 import { IconList } from '@arco-design/web-vue/es/icon'
+
+const emit = defineEmits(['clickMenu'])
 </script>
 
 <style lang="less" scoped>

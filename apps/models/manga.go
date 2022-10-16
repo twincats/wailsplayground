@@ -26,8 +26,8 @@ type MangaHomeApi struct {
 }
 
 type MangaHome struct {
-	Manga      []MangaHomeApi
-	Pagination *Pagination
+	Manga      []MangaHomeApi `json:"manga"`
+	Pagination *Pagination    `json:"pagination"`
 }
 
 type MPaginationParam struct {

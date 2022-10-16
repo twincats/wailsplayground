@@ -3,6 +3,7 @@ package main
 import (
 	"embed"
 	"mangav3/apps"
+	"mangav3/apps/file"
 	"mangav3/apps/manga"
 
 	"github.com/wailsapp/wails/v2"
@@ -24,14 +25,16 @@ func main() {
 
 	//manga instanse
 	manga := manga.NewManga()
+	freader := file.NewFileReader()
 
 	// Create application with options
 	err := wails.Run(&options.App{
-		Title:     "waislplayground",
-		Width:     1024,
-		Height:    768,
-		Assets:    assets,
-		Frameless: false,
+		Title:         "waislplayground",
+		Width:         1024,
+		Height:        768,
+		Assets:        assets,
+		AssetsHandler: file.NewFileLoader(),
+		Frameless:     false,
 		Windows: &windows.Options{
 			WebviewIsTransparent: false,
 			WindowIsTranslucent:  false,
@@ -42,6 +45,7 @@ func main() {
 		Bind: []interface{}{
 			app,
 			manga,
+			freader,
 		},
 	})
 

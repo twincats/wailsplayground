@@ -4,7 +4,7 @@
       :style="{ width: '200px', height: '100%' }"
       :default-open-keys="['0']"
       :default-selected-keys="['0_2']"
-      :collapsed="collapse"
+      :collapsed="$props.collapse"
     >
       <a-sub-menu key="0">
         <template #icon><icon-apps></icon-apps></template>
@@ -45,15 +45,22 @@ import {
   IconBulb,
 } from '@arco-design/web-vue/es/icon'
 
-const collapse = ref(true)
-
-const onCollapse = (val: any, type: any) => {
-  const content = type === 'responsive' ? '触发响应式收缩' : '点击触发收缩'
-  Message.info({
-    content,
-    duration: 2000,
-  })
+interface Props {
+  collapse?: boolean
 }
+
+//props with default
+withDefaults(defineProps<Props>(), {
+  collapse: true,
+})
+
+// const onCollapse = (val: any, type: any) => {
+//   const content = type === 'responsive' ? '触发响应式收缩' : '点击触发收缩'
+//   Message.info({
+//     content,
+//     duration: 2000,
+//   })
+// }
 </script>
 
 <style scoped>
