@@ -1,15 +1,10 @@
 <template>
   <div class="p-3">
-    <div class="grid grid-cols-5">
+    <div class="grid grid-cols-5 lg:grid-cols-10">
       <div v-for="(manga, i) in mangaHome?.manga" :key="i" class="mb-3">
         <a-card hoverable :style="{ height: '100%' }">
           <template #cover>
-            <div
-              :style="{
-                height: '204px',
-                overflow: 'hidden',
-              }"
-            >
+            <div class="h-210px overflow-hidden">
               <img
                 :style="{ width: '100%', transform: 'translateY(-20px)' }"
                 alt="dessert"
@@ -22,6 +17,12 @@
           </a-card-meta>
         </a-card>
       </div>
+    </div>
+    <div class="mt-3">
+      <a-pagination
+        class="justify-center"
+        :total="mangaHome?.pagination?.total ? mangaHome?.pagination?.total : 0"
+      />
     </div>
   </div>
 </template>

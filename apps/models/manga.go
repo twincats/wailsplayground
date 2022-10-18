@@ -60,16 +60,16 @@ func (p MPaginationParam) Paginate(totalPage int) *Pagination {
 		From:        p.Limit*p.Page - (p.Limit - 1),
 		To:          to,
 		Total:       totalPage,
-		Last_page:   last,
+		LastPage:    last,
 		PerPage:     p.Limit,
 	}
 }
 
 type Pagination struct {
-	CurrentPage int
-	From        int
-	To          int
-	Total       int
-	Last_page   int
-	PerPage     int
+	CurrentPage int `json:"current_page"`
+	From        int `json:"from"`
+	To          int `json:"to"`
+	Total       int `json:"total"`
+	LastPage    int `json:"last_page"`
+	PerPage     int `json:"perpage"`
 }

@@ -1,3 +1,30 @@
+export namespace apps {
+	
+	export class Manga {
+	    id: number;
+	    title: string;
+	    status_end: boolean;
+	    mdex: string;
+	    created_at: string;
+	    updated_at: string;
+	
+	    static createFrom(source: any = {}) {
+	        return new Manga(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.id = source["id"];
+	        this.title = source["title"];
+	        this.status_end = source["status_end"];
+	        this.mdex = source["mdex"];
+	        this.created_at = source["created_at"];
+	        this.updated_at = source["updated_at"];
+	    }
+	}
+
+}
+
 export namespace models {
 	
 	export class Manga {
@@ -16,6 +43,28 @@ export namespace models {
 	        this.title = source["title"];
 	        this.status_end = source["status_end"];
 	        this.mdex = source["mdex"];
+	    }
+	}
+	export class Pagination {
+	    current_page: number;
+	    from: number;
+	    to: number;
+	    total: number;
+	    last_page: number;
+	    perpage: number;
+	
+	    static createFrom(source: any = {}) {
+	        return new Pagination(source);
+	    }
+	
+	    constructor(source: any = {}) {
+	        if ('string' === typeof source) source = JSON.parse(source);
+	        this.current_page = source["current_page"];
+	        this.from = source["from"];
+	        this.to = source["to"];
+	        this.total = source["total"];
+	        this.last_page = source["last_page"];
+	        this.perpage = source["perpage"];
 	    }
 	}
 	export class MangaHomeApi {
@@ -63,8 +112,7 @@ export namespace models {
 	}
 	export class MangaHome {
 	    manga: MangaHomeApi[];
-	    // Go type: Pagination
-	    pagination?: any;
+	    pagination?: Pagination;
 	
 	    static createFrom(source: any = {}) {
 	        return new MangaHome(source);
@@ -73,7 +121,7 @@ export namespace models {
 	    constructor(source: any = {}) {
 	        if ('string' === typeof source) source = JSON.parse(source);
 	        this.manga = this.convertValues(source["manga"], MangaHomeApi);
-	        this.pagination = this.convertValues(source["pagination"], null);
+	        this.pagination = this.convertValues(source["pagination"], Pagination);
 	    }
 	
 		convertValues(a: any, classs: any, asMap: boolean = false): any {
@@ -94,33 +142,7 @@ export namespace models {
 		    return a;
 		}
 	}
-
-}
-
-export namespace apps {
 	
-	export class Manga {
-	    id: number;
-	    title: string;
-	    status_end: boolean;
-	    mdex: string;
-	    created_at: string;
-	    updated_at: string;
-	
-	    static createFrom(source: any = {}) {
-	        return new Manga(source);
-	    }
-	
-	    constructor(source: any = {}) {
-	        if ('string' === typeof source) source = JSON.parse(source);
-	        this.id = source["id"];
-	        this.title = source["title"];
-	        this.status_end = source["status_end"];
-	        this.mdex = source["mdex"];
-	        this.created_at = source["created_at"];
-	        this.updated_at = source["updated_at"];
-	    }
-	}
 
 }
 
