@@ -21,6 +21,9 @@
     <div class="mt-3">
       <a-pagination
         class="justify-center"
+        v-model:current="nav.page"
+        v-model:page-size="nav.limit"
+        :auto-adjust="false"
         :total="mangaHome?.pagination?.total ? mangaHome?.pagination?.total : 0"
       />
     </div>
@@ -30,17 +33,47 @@
 <script setup lang="ts">
 import { GetMangaHome } from '@wails/go/manga/Manga'
 import type { models } from '@wails/go/models'
-import { MangaTitleURL } from '@/composables/Helper'
+import { MangaTitleURL, GetBreakPoints, SEQUENCE3 } from '@/composables/Helper'
 
+/* INTERFACE */
+interface Nav {
+  page: number
+  limit: number
+}
+
+/* INITIAL REACTIVE VARIABLE */
 const mangaHome = ref<models.MangaHome | null>(null)
-const nav = reactive({
-  page: 1,
-  limit: 10,
-})
+const nav = reactive<Nav>({ page: 1, limit: 10 })
+const { breakpoints } = GetBreakPoints()
+const lg = breakpoints.greater('lg')
 
+/* INITIAL PRELOAD FUNCTION */
 //load manga
-GetMangaHome(nav.page, nav.limit).then(res => {
-  mangaHome.value = res
+const loadManga = (n: Nav) => {
+  console.log(nav, 'berore fetching')
+  GetMangaHome(n.page, n.limit).then(res => {
+    mangaHome.value = res
+  })
+}
+
+// ON_CREATED function loading Manga Data
+loadManga(nav)
+
+// Watching View and Pagination page change
+watch([lg, () => nav.page], ([l, p], [_, op]) => {
+  if (l) {
+    nav.limit = 30
+    if (op == p) {
+      nav.page = SEQUENCE3(p)
+    }
+    loadManga(nav)
+  } else {
+    nav.limit = 10
+    if (op == p) {
+      nav.page = (p - 1) * 3 + 1
+    }
+    loadManga(nav)
+  }
 })
 </script>
 
