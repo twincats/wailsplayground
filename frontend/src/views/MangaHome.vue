@@ -4,7 +4,7 @@
       <div v-for="(manga, i) in mangaHome?.manga" :key="i" class="mb-3">
         <a-card hoverable :style="{ height: '100%' }">
           <template #cover>
-            <div class="h-210px overflow-hidden">
+            <div class="h-210px overflow-hidden hover:cursor-pointer">
               <img
                 :style="{ width: '100%', transform: 'translateY(-20px)' }"
                 alt="dessert"
@@ -13,7 +13,11 @@
             </div>
           </template>
           <a-card-meta :title="manga.title">
-            <template #description> Chapter {{ manga.chapter }} </template>
+            <template #description>
+              <a-link @click="$router.push(`/page/${manga.chapter_id}`)"
+                >Chapter {{ manga.chapter }}</a-link
+              >
+            </template>
           </a-card-meta>
         </a-card>
       </div>
@@ -50,13 +54,19 @@ const lg = breakpoints.greater('lg')
 /* INITIAL PRELOAD FUNCTION */
 //load manga
 const loadManga = (n: Nav) => {
-  console.log(nav, 'berore fetching')
+  // console.log(nav, 'berore fetching')
   GetMangaHome(n.page, n.limit).then(res => {
     mangaHome.value = res
   })
 }
 
 // ON_CREATED function loading Manga Data
+// to make load nav accurate when sitch pages
+if (lg.value) {
+  nav.limit = 30
+} else {
+  nav.limit = 10
+}
 loadManga(nav)
 
 // Watching View and Pagination page change
