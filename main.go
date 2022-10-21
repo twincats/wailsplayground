@@ -38,7 +38,7 @@ func main() {
 		Windows: &windows.Options{
 			WebviewIsTransparent: false,
 			WindowIsTranslucent:  false,
-			// DisableFramelessWindowDecorations: true,
+			WebviewUserDataPath:  app.GetUserDataPath(),
 		},
 		BackgroundColour: &options.RGBA{R: 24, G: 24, B: 24, A: 1},
 		OnStartup:        app.Startup,

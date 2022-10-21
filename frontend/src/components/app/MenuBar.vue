@@ -9,7 +9,7 @@
     </div>
     <div class="w-full flex justify-end">
       <a-button-group size="mini">
-        <a-button> copy </a-button>
+        <a-button @click="$router.push('/home')"> H </a-button>
         <a-button> cut </a-button>
         <a-button> find </a-button>
       </a-button-group>

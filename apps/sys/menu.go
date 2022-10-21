@@ -18,4 +18,6 @@ func GetAppMenu(ctx context.Context) *menu.Menu {
 	FileMenu.AddText("Quit", keys.CmdOrCtrl("q"), func(_ *menu.CallbackData) {
 		runtime.Quit(ctx)
 	})
+
+	return AppMenu
 }

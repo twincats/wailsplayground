@@ -1,4 +1,4 @@
-import { useColorMode } from '@vueuse/core'
+import { useColorMode, usePreferredDark } from '@vueuse/core'
 import { computed, reactive } from 'vue'
 
 export const mode = useColorMode({
@@ -32,11 +32,17 @@ export const toggleTransparant = () => {
     appBgAlpha.value = 1
   }
 }
-
+export const isdark = usePreferredDark()
 export const themeVar = computed(() => {
   if (mode.value == 'dark') {
     return darkThemeVar
-  } else {
+  } else if (mode.value == 'light') {
     return lightThemeVar
+  } else {
+    if (isdark.value) {
+      return darkThemeVar
+    } else {
+      return lightThemeVar
+    }
   }
 })

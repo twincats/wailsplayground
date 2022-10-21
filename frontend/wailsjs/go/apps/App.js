@@ -14,8 +14,12 @@ export function Find(arg1, arg2) {
   return window['go']['apps']['App']['Find'](arg1, arg2);
 }
 
-export function GetManga() {
-  return window['go']['apps']['App']['GetManga']();
+export function GetENV() {
+  return window['go']['apps']['App']['GetENV']();
+}
+
+export function GetUserDataPath() {
+  return window['go']['apps']['App']['GetUserDataPath']();
 }
 
 export function Greet(arg1) {

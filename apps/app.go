@@ -4,7 +4,9 @@ import (
 	"context"
 	"fmt"
 	"io/fs"
+	"os"
 	"path/filepath"
+	"strings"
 
 	"github.com/climech/naturalsort"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
@@ -29,9 +31,27 @@ func NewApp() *App {
 func (a *App) Startup(ctx context.Context) {
 	a.ctx = ctx
 	runtime.WindowSetTitle(ctx, "MangaV3.5")
-	// tit, _ := syscall.UTF16PtrFromString("waislplayground")
-	// hwnd := win.FindWindow(nil, tit)
-	// win.SetWindowLong(hwnd, win.GWL_EXSTYLE, win.GetWindowLong(hwnd, win.GWL_EXSTYLE)|win.WS_EX_LAYERED)
+
+}
+
+func (f App) GetENV() runtime.EnvironmentInfo {
+	return runtime.Environment(f.ctx)
+}
+
+func (f App) GetUserDataPath() string {
+	userDir := "Appdata"
+
+	exePath, _ := os.Executable()
+	exeDir, exeName := filepath.Split(exePath)
+	baseExe := strings.Split(exeName, "-")
+
+	if len(baseExe) > 1 {
+		// userDir = filepath.Join("%APPDATA%", exeName)
+		userDir += "-dev"
+	}
+
+	return filepath.Join(exeDir, userDir)
+
 }
 
 // Greet returns a greeting for the given name
@@ -72,19 +92,4 @@ func (a *App) ConnectDatabasePostgres(dbname string) {
 		panic("failed to connect database " + dbname)
 	}
 	a.db = db
-}
-
-type Manga struct {
-	ID        int    `json:"id"`
-	Title     string `json:"title"`
-	StatusEnd bool   `json:"status_end"`
-	Mdex      string `json:"mdex"`
-	CreatedAt string `gorm:"type:timestamp" json:"created_at"`
-	UpdatedAt string `gorm:"type:timestamp" json:"updated_at"`
-}
-
-func (a *App) GetManga() []Manga {
-	var mangas []Manga
-	a.db.Find(&mangas)
-	return mangas
 }
