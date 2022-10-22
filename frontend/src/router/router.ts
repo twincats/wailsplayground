@@ -21,6 +21,7 @@ export default createRouter({
     {
       path: '/page/:cid',
       name: 'page',
+      props: true,
       component: () => import('../views/Page.vue'),
     },
     {

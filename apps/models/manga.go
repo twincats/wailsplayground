@@ -73,3 +73,12 @@ type Pagination struct {
 	LastPage    int `json:"last_page"`
 	PerPage     int `json:"perpage"`
 }
+
+type Page struct {
+	Pages []string `json:"pages"`
+	Path  string   `json:"path"`
+	Nav   struct {
+		Next string `json:"next"`
+		Prev string `json:"prev"`
+	} `json:"nav"`
+}

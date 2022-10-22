@@ -19,7 +19,7 @@ func main() {
 	// Create an instance of the app structure
 	app := apps.NewApp()
 
-	//connect sqlite db
+	//connect to database
 	// app.connectDatabaseSqlite("mangadb.db")
 	apps.ConnectDatabasePostgres("mangav3")
 

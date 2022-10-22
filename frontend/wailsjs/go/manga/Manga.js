@@ -13,3 +13,7 @@ export function GetMangaHome(arg1, arg2) {
 export function GetMangas() {
   return window['go']['manga']['Manga']['GetMangas']();
 }
+
+export function GetPage(arg1) {
+  return window['go']['manga']['Manga']['GetPage'](arg1);
+}

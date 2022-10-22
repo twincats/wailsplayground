@@ -61,3 +61,24 @@ func Paginate(db *gorm.DB, page int, limit int) *gorm.DB {
 	offset := (page - 1) * int(limit)
 	return db.Offset(offset).Limit(limit)
 }
+
+// Page for Fetching chapter and Manga title
+type Page struct {
+	ID      int
+	Chapter string
+	Title   string
+}
+
+/* GetPage for Fetching list of images chapter */
+func (f Manga) GetPage(id int) interface{} {
+	var p Page
+	apps.DB.Table("chapters").
+		Select("chapters.id", "chapter", "mangas.title").
+		Joins("inner join mangas on chapters.manga_id = mangas.id").
+		Where("chapters.id = ?", id).
+		Take(&p)
+	// fmt.Println(p)
+	// var page models.Page
+	// page.Path = filepath.Join(p.title, strconv.Itoa(p.chapter))
+	return "Title : " + p.Title
+}
